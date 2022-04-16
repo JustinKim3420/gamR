@@ -3,7 +3,6 @@ import { BurgerContext } from "../context/BurgerProvider";
 
 const Burger = () => {
   const [isBurgerClick, setBurgerClick] = useContext(BurgerContext);
-  console.log(isBurgerClick);
 
   const handleClick = () => {
       setBurgerClick(!isBurgerClick)

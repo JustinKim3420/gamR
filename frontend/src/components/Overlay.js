@@ -3,7 +3,6 @@ import { BurgerContext } from "../context/BurgerProvider";
 
 const Overlay = () => {
   const [isBurgerClick, setBurgerClick] = useContext(BurgerContext);
-  
   useEffect(()=>{
     if(isBurgerClick){
       document.body.classList.add('hidden-scroll')
@@ -13,17 +12,25 @@ const Overlay = () => {
     }
   },[isBurgerClick])
 
+  useEffect(()=>{
+    const handleResize = ()=>{
+      setBurgerClick(false)
+    } 
+    const removeResizeListener = ()=>{
+      window.removeEventListener('resize', handleResize)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return removeResizeListener
+  },[])
+
   const handleClick = (event)=>{
-    console.log(event.target.id)
     if(event.target.id==='overlay'){
-      console.log('if statment')
       setBurgerClick(false)
     }
   }
 
-  const handleScroll = ()=>{
-    
-  }
 
   return (
     <div id="overlay" className={(isBurgerClick? 'clicked':'')} onClick={handleClick}>
