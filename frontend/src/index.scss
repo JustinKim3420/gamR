@@ -10,6 +10,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
+  min-width: 15rem;
 }
 
 .App {
@@ -37,7 +38,7 @@ body {
   background-color: $primary-color;
   box-shadow: 0 0.1rem 0.1rem black;
   z-index: 4;
-  min-height:5rem;
+  min-height: 5rem;
 }
 
 .nav-list {
@@ -99,19 +100,36 @@ body {
 
 #homepage {
   display: flex;
-  position:relative;
-  z-index: -2;
+  flex: 1 1 auto;
+  background-color: black;
+  position: relative;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
 }
 
 .sliding-banner {
-  display: flex;
-  width: 50%;
-  justify-content: center;
+  position: relative;
   margin-top: 2rem;
-  background-color: yellow;
+}
+
+.slideshow {
+  position: relative;
+  height: 25rem;
+  width: 50rem;
+  background-color: pink;
+  overflow: hidden;
+  .slides {
+    display: flex;
+    position: relative;
+    height: 100%;
+    transition: left 0.25s;
+    .event {
+      position: relative;
+      display: inline-block;
+      height: 100%;
+      flex: 0 0 50rem;
+    }
+  }
 }
 
 .burger {
@@ -148,48 +166,106 @@ body {
   }
 }
 
-#overlay{
+#overlay {
   visibility: hidden;
   background-color: rgba(0, 0, 0, 0);
-  position:absolute;
-  top:5rem;
-  bottom:0;
-  width:100%;
+  position: absolute;
+  top: 5rem;
+  bottom: 0;
+  width: 100%;
   overflow: none;
+  z-index: 2;
   transition: background-color 0.25s, visibility 0.25s;
-  .overlay-list{
+  .overlay-list {
     list-style: none;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     background-color: $primary-color;
     position: absolute;
-    right:0;
-    top:0;
-    bottom:0;
-    width:0;
-    min-width:0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    min-width: 0;
     overflow: hidden;
-    transition:all 0.25s;
-    .overlay-item{
+    transition: all 0.25s;
+    .overlay-item {
       white-space: nowrap;
-      color:white;
+      color: white;
       font-size: 1rem;
       transition: all 0.25s;
     }
-    .overlay-item:hover{
-      font-size:1.5rem;
-      color:black;
-      background-color:white;
+    .overlay-item:hover {
+      font-size: 1.5rem;
+      color: black;
+      background-color: white;
     }
   }
-  .overlay-list.clicked{
-    width:25%;
-    min-width:10rem;
-    overflow-x:hidden;
+  .overlay-list.clicked {
+    width: 25%;
+    min-width: 10rem;
+    overflow-x: hidden;
     overflow-y: auto;
   }
 }
-#overlay.clicked{
-  visibility:visible;
+#overlay.clicked {
+  visibility: visible;
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+.left-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2.5rem;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.25s;
+  z-index: 2;
+}
+.left-arrow:hover {
+  background-color: rgb(163, 163, 163);
+}
+.left-arrow::after {
+  content: "";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -0.25rem;
+  width: 0;
+  height: 0;
+  border-top: 0.75rem solid transparent;
+  border-bottom: 0.75rem solid transparent;
+  border-right: 1.25rem solid black;
+}
+
+.right-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 2.5rem;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.right-arrow:hover {
+  background-color: rgb(163, 163, 163);
+}
+.right-arrow::after {
+  content: "";
+  display: flex;
+  margin-right: -0.25rem;
+  width: 0;
+  height: 0;
+  border-top: 0.75rem solid transparent;
+  border-bottom: 0.75rem solid transparent;
+  border-left: 1.25rem solid black;
 }
