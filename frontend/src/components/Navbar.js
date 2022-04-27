@@ -6,8 +6,14 @@ const Navbar = () => {
 
   const [isBurgerClick, setBurgerClick] = useContext(BurgerContext);
 
+  const handleClick = (event)=>{
+    if(isBurgerClick===true && event.target.id==='navbar'){
+      setBurgerClick(false)
+    }
+  }
+
   return (
-    <div className="navbar">
+    <div id='navbar' className={"navbar "} onClick = {(e)=>handleClick(e)}>
       <div className="left-nav">
         <h1 id="logo">GamR</h1>
         <ul className="nav-list">

@@ -5,6 +5,8 @@ const Burger = () => {
   const [isBurgerClick, setBurgerClick] = useContext(BurgerContext);
 
   const handleClick = () => {
+      document.documentElement.scrollTop=0;
+      document.body.scrollTop=0;
       setBurgerClick(!isBurgerClick)
   };
 
